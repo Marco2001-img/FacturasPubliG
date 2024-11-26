@@ -55,15 +55,15 @@
         <td>Entrega en</td>
       </tr>
       <tr>
-        <td> <input class="form-control" type="text" placeholder="Cantidad "></td>
+        <td> <input class="form-control" id="txt_cantidad"type="text" placeholder="Cantidad "></td>
         <td>
           <input class="form-control" type="text" placeholder="Descipcion ">
         </td>
         <td>
-          <input class="form-control" type="text" placeholder="Total ">
+          <input class="form-control" type="text" id="txt_subtotal" placeholder="Total ">
         </td>
         <td>
-          <label class="form-label">$0.00</label>
+          <label class="form-label" id="resultado_lista">$0.0</label>
         </td>
         <td>
           <select class="form-select form-select-sm" aria-label="Small select example">
