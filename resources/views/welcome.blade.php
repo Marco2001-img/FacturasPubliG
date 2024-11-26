@@ -41,37 +41,40 @@
   </div>
 
   <div class="tile">
-    <h3 class="tile-title">Simple Table</h3>
+    <h3 class="tile-title">Notas</h3>
     <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NO. NOTA</th>
+            <th>NOMBRE CLIENTE</th>
+            <th>PEDIDO</th>
+            <th>ANTICIPO</th>
+            <th>TOTAL</th>
+            <th>PDF</th>
+            <th>WHASTAPP</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>120</td>
+            <td>Marco</td>
+            <td>2 lonas</td>
+            <td>$100</td>
+            <td>$300</td>
+            <td><a href="#"><i class="bi bi-filetype-pdf"></i></a></td>
+            <td><a href="#" id="whatsappLink"><i class="bi bi-whatsapp"></i></a></td>
+            <td><i class="bi bi-eye-fill"></i></td>
+            <td><i class="bi bi-pencil-square"></i></td>
+            <td><i class="bi bi-trash3-fill"></i></td>
+          </tr>
+        </tbody>
+      </table>
+
   </div>
 
   <div class="row">
