@@ -1,98 +1,95 @@
-const contacto = document.getElementById('contacto').value
-const telefono = document.getElementById('telefono').value
-const fecha = document.getElementById('fecha').value
-const diseñador = document.getElementById('diseñador').value
-const concepto = document.getElementById('concepto').value
-const entrega = document.getElementById('entrega').value
-const pago = document.getElementById('pago').value
-const tableProductos = document.getElementById('tableProductos')
-const agregarProducto = document.getElementById('agregarLista')
-const form = document.getElementById('form')
+const contacto = document.getElementById('contacto').value;
+const telefono = document.getElementById('telefono').value;
+const fecha = document.getElementById('fecha').value;
+const diseñador = document.getElementById('diseñador').value;
+const concepto = document.getElementById('concepto').value;
+const entrega = document.getElementById('entrega').value;
+const pago = document.getElementById('pago').value;
+const agregarProducto = document.getElementById('agregarProducto');
+const form = document.getElementById('form');
+const txtIva = document.getElementById('txtIva');
+const txtAnticipo = document.getElementById('anticipo');
+const factura = document.getElementById('factura');
+const txt_Total = document.getElementById('txt_Total');
+const txtPorpagar = document.getElementById('txtPorpagar');
+const tableProductos = document.getElementById('tableProductos');
 
 
-//operaciones
+// Variables para el total y el anticipo
+let total = 0;
+let iva = 0;
+let anticipo = 0;
 
-let total = 0
+//agregar
 
-document.getElementById('anticipo').addEventListener('input', () => {
-    const anticipo = parseFloat(document.getElementById('anticipo').value);
-    const txtPorpagar = document.getElementById('txtPorpagar');
 
-    // Verificar si el anticipo es un número válido y mayor a 0
-    if (!isNaN(anticipo) && anticipo >= 0) {
-        const anti = anticipo - total; // Calcular el valor restante
-        txtPorpagar.textContent = '$ ' + anti // Mostrar el resultado
-    } else {
-        txtPorpagar.textContent = ''; // Limpiar el campo de porpagar si anticipo no es válido
-    }
+
+// Evento para agregar productos a la tabla
+agregarProducto.addEventListener('click', () => {
+const cantidad = document.getElementById('txtCantidad').value
+const descripcion = document.getElementById('txtdescripcion').value
+const costo = document.getElementById('txtCosto').value
+
+    const newRow = document.createElement('tr');
+    const resultado = cantidad * costo;
+
+    newRow.innerHTML = `
+        <td>${cantidad}</td>
+        <td>${descripcion}</td>
+        <td>${costo}</td>
+        <td>${resultado}</td>
+    `;
+
+    // Sumar al total
+    total += resultado;
+    actualizarValores();
+
+    tableProductos.appendChild(newRow);
+   
+    limpia()
 });
 
-//boton
-agregarProducto.addEventListener('click', () => {
-    const txtCantidad = document.getElementById('txtCantidad').value
-    const txtdescripcion = document.getElementById('txtdescripcion').value
-    const txtCosto = document.getElementById('txtCosto').value
-    const txt_Total = document.getElementById('txt_Total')
-   // const anticipo = parseFloat(document.getElementById('anticipo').value) 
-    const txtPorpagar = document.getElementById('txtPorpagar')
-    
-    const newRow = document.createElement('tr')
-    const resultado = txtCantidad*txtCosto
+function limpia()
+{
+    const cantidad = document.getElementById('txtCantidad').value=""
+const descripcion = document.getElementById('txtdescripcion').value=""
+const costo = document.getElementById('txtCosto').value=""
 
-    newRow.innerHTML= `
-        <td>${txtCantidad}</td>
-         <td>${txtdescripcion}</td>
-          <td>${txtCosto}</td>
-           <td>$ ${resultado}</td>
-    `
-    //sumar lista
-    total+= resultado
-    txt_Total.textContent='$'+ total
-    
-    facturar(total,txt_Total)
-    
-    tableProductos.appendChild(newRow)
 
-    limpiar()
-    
-    //anticipo
-    const anticipo = parseFloat(document.getElementById('anticipo').value);
-    if (!isNaN(anticipo) && anticipo >= 0) {
-        const anti = anticipo - total;
-        txtPorpagar.textContent = '$ ' + anti
+}
+
+// Función para actualizar los valores de Total, IVA, Anticipo y Porpagar
+function actualizarValores() {
+    // Obtener el anticipo
+    anticipo = parseFloat(txtAnticipo.value) || 0;
+
+    // Calcular el total con IVA si el checkbox de factura está marcado
+    let totalConIva = total;
+    if (factura.checked) {
+        iva = total * 0.16; // Calcular el IVA
+        totalConIva += iva;
+        txtIva.textContent = `$${iva.toFixed(2)}`; // Mostrar el IVA
+    } else {
+        iva = 0;
+        txtIva.textContent = '$0.00';
     }
 
-   
+    // Actualizar el total con o sin IVA
+    txt_Total.textContent = `$${totalConIva.toFixed(2)}`;
 
-})
-
-function limpiar(){
-    txtCantidad.value=''
-    txtdescripcion.value=''
-    txtCosto.value = ''
+    // Calcular el monto por pagar (total con IVA - anticipo)
+    let montoPorPagar = totalConIva - anticipo;
+    txtPorpagar.textContent = `$${montoPorPagar.toFixed(2)}`;
 }
 
-function facturar(total,txtFinal)
-{
-    const txtIva = document.getElementById('txtIva')
-    const factura = document.getElementById('factura')
-    factura.addEventListener('change', ()=> {
-        if (factura.checked) {
-           
-            const resultado = total * 0.16
-            txtIva.textContent = resultado
-            
-            const final = txtFinal + resultado
-            final.textContent = txtFinal
+// Evento para actualizar el anticipo y los valores cuando cambie el anticipo
+txtAnticipo.addEventListener('input', () => {
+    actualizarValores();
+});
 
-            console.log("El checkbox está marcado");
+// Evento para actualizar los valores cuando se marque o desmarque el checkbox de factura
+factura.addEventListener('change', () => {
+    actualizarValores();
+});
 
-        } else {
-            txtIva.textContent='$0.00'
-            console.log("El checkbox está desmarcado");
-          
-        }
-    })
-   
-}
-facturar()
+

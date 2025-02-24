@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }} ">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="{{ asset('images/icon_pg.png') }}" rel="icon">
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
@@ -79,7 +80,7 @@
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Image">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{ asset('images/icon_pg.png') }}" alt="User Image">
         <div>
           <p class="app-sidebar__user-name">Bienvenido</p>
           <p class="app-sidebar__user-designation">PUBLI G</p>
@@ -97,19 +98,6 @@
           <ul class="treeview-menu">
             <li><a class="treeview-item " href="/Agregarclientes"><i class="icon bi bi-circle-fill"></i> Agregar Cliente</a></li>
             <li><a class="treeview-item" href="/TodosClientes"><i class="icon bi bi-circle-fill"></i> Ver Clientes</a></li>
-          </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon bi bi-table"></i><span class="app-menu__label">Facturas</span><i class="treeview-indicator bi bi-chevron-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="/Nuevafactura"><i class="icon bi bi-circle-fill"></i> Nueva Factura</a></li>
-            <li><a class="treeview-item" href="/todasFacturas"><i class="icon bi bi-circle-fill"></i> Ver Facturas</a></li>
-          </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon bi bi-file-earmark"></i><span class="app-menu__label">Contabilidad</span><i class="treeview-indicator bi bi-chevron-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="/entradas"><i class="icon bi bi-circle-fill"></i> Entrada</a></li>
-            <li><a class="treeview-item" href="/gastos"><i class="icon bi bi-circle-fill"></i> Gastos</a></li>
-            <li><a class="treeview-item" href="/Vercontabilidad"><i class="icon bi bi-circle-fill"></i> Ver</a></li>
           </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon bi bi-people-fill"></i><span class="app-menu__label">Empleados</span><i class="treeview-indicator bi bi-chevron-right"></i></a>
@@ -159,6 +147,8 @@
     <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
     <script src=" {{asset('js/bootstrap.min.js') }}"></script>
     <script src="{{asset('js/main.js') }}"></script>
+    <script src="{{asset('js/buscadorTabla.js') }}"></script>
+    <script src="{{asset('js/Pdf.js') }}"></script>
     <!-- Page specific javascripts-->
     <!-- Google analytics script-->
     <script type="text/javascript">
